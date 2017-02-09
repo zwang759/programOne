@@ -1,5 +1,3 @@
-package p1;
-
 /** 
  * A container that stores references to instances of Score in a 
  * contiguous and ordered list of those instances.
