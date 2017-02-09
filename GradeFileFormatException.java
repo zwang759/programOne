@@ -1,4 +1,7 @@
 
-public class GradeFileFormatException extends Throwable{
+public class GradeFileFormatException extends Exception {
 
+	public GradeFileFormatException(String msg) {
+		// TODO Auto-generated constructor stub
+	}
 }

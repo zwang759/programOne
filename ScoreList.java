@@ -1,112 +1,133 @@
 /////////////////////////////////////////////////////////////////////////////
 // Semester:         CS367 Spring 2016 
-// PROJECT:          p1 (ScoreList & Score)
-// FILE:             p1
+// PROJECT:          p0
+// FILE:             ScoreList.java
 //
-// Author: Savannah Mann
-//punch
+// Author: Chase Wember, cwember@wisc.edu, 9066586711, LEC 003
 //////////////////////////// 80 columns wide //////////////////////////////////
+
 /**
- * Stores the item Score in a List format, implements ScoreList ADT 
+ * A custom array list of scores. A Score keeps track of a name and points 
+ * earned  vs points possible. 
  *
- * @author Savannah Mann
+ * @author Chase Wember 
  */
-
-
 public class ScoreList implements ScoreListADT {
-	
-	
-	Score[] storedScores = new Score[0]; //An array of all added Scores
-	Score[] tempStorage = new Score[0]; //Used for expanding the storedScores Array
-	Score tempRemove = new Score("temp",99999999,99999999); //For holding removed Scores
+
+	private Score[] points; 
+	private int numPoints;
+
 	/** 
-	 * Returns the number of Scores in the list or zero
-	 * @return the number of scores in this list
+	 * Creates an array of size 1. Keeps track of array size. 
 	 */
-	@Override
-	public int size() {
-		return storedScores.length;
+	public ScoreList() {
+		points = new Score[1]; //new array 
+		numPoints = 0; //keeps track of array size. 
+
 	}
-	
-	
+
+	@Override
+
 	/** 
-	 * Adds the score to the end of this list.
-	 * 
+	 * Returns the number of scores or "numPoints" in the list or zero
+	 * @return the number of scores or "numPoints" in this list
+	 */
+	public int size() {
+		return numPoints;
+
+	}
+
+	@Override
+
+	/** 
+	 * Adds the score to the end of this list. 
+	 * Calls expandArray() if there is no space to add to the array. 
 	 * @param s a non-null Score to place as the last item in the list.
 	 * @throws IllegalArgumentException
 	 */
-	@Override
 	public void add(Score s) throws IllegalArgumentException {
-	
-		if (s == null){
-			throw new java.lang.IllegalArgumentException();
-		}
-		else{
-		
-		/////ADD MORE SPACE TO THE ARRAY ONE BY ONE
-		tempStorage = storedScores; //transfer items to temp location
-		storedScores = new Score[tempStorage.length+1]; //expand the storage by one 
-		//Transfer all items from temp
-		for (int i = 0; i<tempStorage.length; i++){
-			storedScores[i] = tempStorage[i];
-		}
-		
-		storedScores[storedScores.length-1] = s; //moves Score s to an empty spot in the array
+		//s must not be null.
+		if (s == null) {
+			throw new IllegalArgumentException();
 
 		}
+
+		//expands array if array is not large enough to add to. 
+		if (numPoints >= points.length) {
+			expandArray();
+
+		}
+
+		points[numPoints] = s;
+		numPoints++;
+
 	}
 
-	
+	@Override
+
 	/**
 	 * Removes and returns the item at index position i.
-	 * If i is less than zero or greater than size()-1,
+	 * If i is less than zero or greater than numPoints-1,
+	 * will throw an IndexOutOfBoundsException. Shifts remaining 
+	 * items into correct index, once item is removed. 
+	 * @param i must be greater than or equal to zero and less 
+	 * than numPoints
+	 * @return the item at index i
+	 * @throws IndexOutOfBoundsException
+	 */
+	public Score remove(int i) throws IndexOutOfBoundsException {
+		if (i < 0 || i > numPoints - 1) {
+			throw new IndexOutOfBoundsException();
+
+		}
+
+		//holds the score that is to be removed 
+		Score scoreToBeRemoved = points[i]; 
+		//shifts remaining items into correct index. 
+		for(int j = i +1; j < numPoints; j++) {
+			points[j - 1] = points[j];
+
+		}
+
+		numPoints--;
+		return scoreToBeRemoved;
+
+	}
+
+	@Override
+
+	/**
+	 * Returns (without removing) the item at index position i.
+	 * If i is less than zero or greater than numPoints-1,
 	 * will throw an IndexOutOfBoundsException.
 	 * @param i must be greater than or equal to zero and less than size()
 	 * @return the item at index i
 	 * @throws IndexOutOfBoundsException
 	 */
-	@Override
-	public Score remove(int i) throws IndexOutOfBoundsException {
-		
-		if (i < 0 || i> storedScores.length-1){
-			throw new java.lang.IndexOutOfBoundsException();
-		}
-		else{
-			
-			tempRemove = storedScores[i];
-			tempStorage = storedScores; //transfer items to temp location
-			storedScores = new Score[tempStorage.length-1]; //decrease the storage by one 
-			
-			//Transfer all items from temp, but leave out i
-			for (int j = 0; j<i-1; j++){
-				storedScores[j] = tempStorage[j];
-			}
-			
-			for (int k = i+1; k<tempStorage.length; k++){
-				storedScores[k-1] = tempStorage[k];
-			}
-		
-			return tempRemove;
-		}
-	}
-
-	
-	/**
-	 * Returns (without removing) the item at index position i.
-	 * If i is less than zero or greater than size()-1,
-	 * will throw an IndexOutOfBoundsException.
-	 * @param i must be greater than or equal to zero and less than size()
-	 * @return the item at index i
-	 * @throws IndexOutOfBoundsException
-	 **/
-	@Override
 	public Score get(int i) throws IndexOutOfBoundsException {
-		if (i < 0 || i> storedScores.length-1){
-			throw new java.lang.IndexOutOfBoundsException();
+		if (i < 0 || i > numPoints - 1) {
+			throw new IndexOutOfBoundsException();
+
 		}
-		else{
-		return storedScores[i];
-		}
+
+		return points[i];
+
 	}
 
-}
+	/**
+	 * Doubles the size of the array points, if points runs out of space. 
+	 */
+	private void expandArray(){
+		//Temporary array that is 2 times the size of points.
+		Score[] a = new Score[points.length*2];
+		//Copies items in points to a.
+		for(int i = 0; i < numPoints; i++) {
+			a[i] = points[i]; 
+
+		}
+
+		//Reassigns points as a. 
+		points = a; 
+
+	}
+} //end of ScoreList class 

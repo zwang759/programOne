@@ -1,3 +1,10 @@
+/////////////////////////////////////////////////////////////////////////////
+// Semester:         CS367 Spring 2016 
+// PROJECT:          p0
+// FILE:             ScoreListADT.java
+//
+// Author: Chase Wember, cwember@wisc.edu, 9066586711, LEC 003
+//////////////////////////// 80 columns wide //////////////////////////////////
 
 /** 
  * A container that stores references to instances of Score in a 
@@ -10,7 +17,7 @@ public interface ScoreListADT {
 	 * @return the number of scores in this list
 	 */
 	int size();
-	
+
 	/** 
 	 * Adds the score to the end of this list.
 	 * 
@@ -18,7 +25,7 @@ public interface ScoreListADT {
 	 * @throws IllegalArgumentException
 	 */
 	void add(Score s) throws IllegalArgumentException;
-	
+
 	/**
 	 * Removes and returns the item at index position i.
 	 * If i is less than zero or greater than size()-1,

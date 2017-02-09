@@ -1,92 +1,100 @@
 /////////////////////////////////////////////////////////////////////////////
 // Semester:         CS367 Spring 2016 
-// PROJECT:          p0 (ScoreList & Score)
-// FILE:             p0
+// PROJECT:          p0
+// FILE:             Score.java
 //
-// Author: Savannah Mann
+// Author: Chase Wember, cwember@wisc.edu, 9066586711, LEC 003
 //////////////////////////// 80 columns wide //////////////////////////////////
 
 /**
- * An item that stores a name, points recieved on an assignment, and points max for an assignment
- *
- * @author Savannah Mann
+ *  A container that stores references to instances of type Score in a 
+ * list of those instances, which is unbroken and systemized.
+ * @author Chase Wember
  */
-
-
 public class Score {
-	
-	//Class variables
-	String name; //Assignment name
-	double points; //Points earned
-	double possible; //Points possible
-	
-	
-	/**Constructor
-	 * @param name
-	 * @param points
-	 * @param possible
-	 * @throws IllegalArgumentException
+
+	private String name;
+	private double pointsEarned; 
+	private double pointsPossible; 
+
+	/**
+	 * a constructor that accepts an assignment name, the 
+	 * points earned, and the points possible for that assignment.
+	 *
+	 * @param name the name of the assignment 
+	 * @param pointsEarned the number of points earned, must be 
+	 * greater than or equal to zero. 
+	 * @param pointsPossible the number of possible points for that
+	 * assignment 
+	 * @throws IllegalArgumentException 
 	 */
-	public Score(String name, double points, double possible) throws IllegalArgumentException{
-		if (name == null || points <0 || possible < points || possible < 0){
-			throw new java.lang.IllegalArgumentException();
-		}
-		else{
-		
+	public Score(String name, double pointsEarned, double pointsPossible) {
 		this.name = name;
-		this.points = points;
-		this.possible = possible;
+		this.pointsEarned = pointsEarned; 
+		this.pointsPossible = pointsPossible; 
+
+		if (name == null) {
+			throw new IllegalArgumentException();
+
+		}
+
+		if (pointsEarned < 0 || pointsPossible < 0) {
+			throw new IllegalArgumentException();
+
+		}
+
+		if (pointsEarned > pointsPossible) {
+			throw new IllegalArgumentException(); 
+
 		}
 	}
-	
-	////////////// GETTERS ///////////////////
-	
-		/**Returns the name of the assignment
-		 * 
-		 * 
-		 * @return
-		 */
-		public String getName(){
-			return name;
-		}
-		/**Returns the points earned of the assignment
-		 * 
-		 * 
-		 * @return
-		 */
-		public double getPoints(){
-			return points;
-		}
-		
-		/**Returns the points possible for the assignment
-		 * 
-		 * 
-		 * @return
-		 */
-		public double getMaxPossible(){
-			return possible;
-		}
-	
-		
-	//////////// OTHER METHODS /////////////////	
-		
-		
-		
-		/**
-		 * Returns the first character of the name
-		 * @return
-		 */
-		public String getCategory()	{
-			return Character.toString(name.charAt(0)); 
-		}
-		
-		/**
-		 * Returns the percentage of points/possible times 100
-		 * @return
-		 */
-		public double getPercent(){
-			return (points/possible)*100;
-		}
-		
-		
-}
+
+	/**
+	 * returns the name of the assignment.
+	 * @return name of the assignment.
+	 */
+	public String getName() {
+		return name;
+
+	}
+
+	/**
+	 * returns the points earned on the assignment.
+	 * @return points earned on the assignment.
+	 */
+	public double getPoints() {
+		return pointsEarned; 
+
+	}
+
+	/**
+	 * returns the maximum possible points of an assignment.
+	 * @return maximum possible points of an assignment.
+	 */
+	public double getMaxPossible(){
+		return pointsPossible;
+
+	}
+
+	/**
+	 * returns the first character of the name.
+	 * @return first character of the name.
+	 */
+	public String getCategory(){
+		//holds the first character of name. 
+		String category = Character.toString(name.charAt(0));
+		return category; 
+
+	}
+
+	/** 
+	 * calculates and returns the percent earned on a assignment. 
+	 * @return percent earned on a assignment.
+	 */
+	public double getPercent(){
+		//holds the value of calculated percent. 
+		double percent = (pointsEarned / pointsPossible) * 100;
+		return percent;
+
+	}
+} //end of Score class 
