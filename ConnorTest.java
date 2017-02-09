@@ -1,5 +1,3 @@
-package p1;
-
 import static org.junit.Assert.*;
 
 import java.io.File;
@@ -20,7 +18,7 @@ public class ConnorTest {
 		*/
 		/*Scanner sc = null;
 		
-		try {
+		try {	
 			 sc = new Scanner(new File(fname));
 		} catch (FileNotFoundException e) {
 			System.out.println("file not found");
@@ -48,6 +46,10 @@ public class ConnorTest {
 		
 		GradeEstimator.main(args);
 		
+		/*String[] s = new String[1];
+		s[0] = "yes";
+		System.out.println(s[0]);
+		*/
 		//GradeEstimator.main(strlist);
 		//fail("Not yet implemented");
 	}

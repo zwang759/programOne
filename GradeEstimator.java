@@ -21,8 +21,7 @@ public class GradeEstimator {
 		}
 		else {
 			gradeInfo = args[0];
-		}
-		
+		}		
 		
 		try {
 			estimator = createGradeEstimatorFromFile(gradeInfo);
@@ -143,24 +142,27 @@ public class GradeEstimator {
 
 		Do not print anything within this method. Return the String that you construct and let the main() method handle the printing.
 		 */
-		String retStr; //REPLACE WITH NORMAL STRING IF NO INDIVIDUAL THINGS NEEDED
+		String[] retStr = new String[1];
 		Double[] catScore = new Double[this.categories.length];
 		Double catWtScore = (double) 0;
 		Double totalPctScore = (double) 0;
+		String summaryBody = "";
 		
-		retStr = String.format("Grade estimate is based on %d scores\n", scores.size());
+		retStr[0] = "";
 		
 		for (int i = 0; i < this.categories.length; i++) {
 			catScore[i] = calcCatScore(scores, this.categories[i].substring(0,1), retStr);
 			catWtScore = (catScore[i] * this.catWeights[i] / 100);
 			totalPctScore += catWtScore;
-			retStr = retStr + String.format("%7.2f%% = %5.2f%% of %2.0f%% for %s\n", catWtScore, catScore[i], (double) this.catWeights[i], this.categories[i]);
+			summaryBody = summaryBody + String.format("%7.2f%% = %5.2f%% of %2.0f%% for %s\n", catWtScore, catScore[i], (double) this.catWeights[i], this.categories[i]);
 		}
-		
-		retStr = retStr + "--------------------------------\n";
-		retStr = retStr + String.format("%7.2f%% weighted percent\n", totalPctScore);
 
-		return retStr;
+		retStr[0] = retStr[0] + String.format("Grade estimate is based on %d scores\n", scores.size());
+		retStr[0] = retStr[0] + summaryBody;
+		retStr[0] = retStr[0] + "--------------------------------\n";
+		retStr[0] = retStr[0] + String.format("%7.2f%% weighted percent\n", totalPctScore);
+
+		return retStr[0];
 	}
 	
 	
@@ -171,7 +173,7 @@ public class GradeEstimator {
 	 * @param retStr
 	 * @return
 	 */
-	private Double calcCatScore(ScoreList scores, String catName, String retStr) {
+	private Double calcCatScore(ScoreList scores, String catName, String[] retStr) {
 
 		ScoreIterator itr = new ScoreIterator(scores, catName);
 		Score currScore = null;
@@ -182,7 +184,7 @@ public class GradeEstimator {
 			currScore = itr.next();
 			total += currScore.getPercent();
 			count ++;
-			// might need to print each here
+			retStr[0] = retStr[0] + String.format("%s %7.2f%%\n", currScore.getName(), currScore.getPercent());
 		}
 		if (count == 0) {
 			return (double) 100;
