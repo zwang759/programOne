@@ -1,5 +1,3 @@
-package p1;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -41,7 +39,6 @@ public class GradeEstimator {
 	}
 	
 	public GradeEstimator() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public static GradeEstimator createGradeEstimatorFromFile(String gradeInfo) 
@@ -99,6 +96,11 @@ public class GradeEstimator {
 		return estimator;
 	}
 	
+	
+	/**Switches the Array of Strings to an Array of Integers
+	 * @param strArr
+	 * @return intArr
+	 */
 	static private int[] strArrToInt(String[] strArr) {
 		int[] intArr = new int[strArr.length];
 		
@@ -108,9 +110,14 @@ public class GradeEstimator {
 		return intArr;
 	}
 	
+	/**Removes comments and spaces from the line and returns an array of the contents
+	 * 
+	 * @param line
+	 * @return retArr
+	 */
 	static private String[] cleanLine(String line) {
-		String COMMENT_DELIM = "#";
-		String PARSE_DELIM = "[ ]+";
+		String COMMENT_DELIM = "#"; //Will read until this String
+		String PARSE_DELIM = "[ ]+"; //Parses out the spaces
 		String[] retArr;
 		int strIndex = -1;
 		
@@ -159,6 +166,14 @@ public class GradeEstimator {
 		return retStr;
 	}
 	
+	
+	/**Calculates the Categories Score
+	 * Makes an iterator for each category and builds up the percentage for each category.
+	 * @param scores
+	 * @param catName
+	 * @param retStr
+	 * @return
+	 */
 	private Double calcCatScore(ScoreList scores, String catName, String retStr) {
 
 		ScoreIterator itr = new ScoreIterator(scores, catName);
@@ -179,6 +194,8 @@ public class GradeEstimator {
 			return (total / count);
 		}
 	}
+	
+	///// GETTERS AND SETTERS
 
 	public static GradeEstimator getEstimator() {
 		return estimator;
