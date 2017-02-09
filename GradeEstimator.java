@@ -38,9 +38,6 @@ public class GradeEstimator {
 		System.out.println(estimator.getEstimateReport());
 	}
 	
-	public GradeEstimator() {
-	}
-	
 	public static GradeEstimator createGradeEstimatorFromFile(String gradeInfo) 
 		      throws FileNotFoundException, GradeFileFormatException {
 		
