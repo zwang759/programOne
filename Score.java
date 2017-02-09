@@ -1,92 +1,121 @@
+package p1;
 /////////////////////////////////////////////////////////////////////////////
-// Semester:         CS367 Spring 2016 
-// PROJECT:          p0 (ScoreList & Score)
-// FILE:             p0
+// Semester:         CS367 Spring 2017
+// PROJECT:          p0
+// FILE:             Score.java
 //
-// Author: Savannah Mann
+// Authors: Connor Beckerle
+//
+// ---------------- OTHER ASSISTANCE CREDITS 
+// n/a
 //////////////////////////// 80 columns wide //////////////////////////////////
 
 /**
- * An item that stores a name, points recieved on an assignment, and points max for an assignment
- *
- * @author Savannah Mann
+ * This class stores data for one score, corresponding to one assignment.
+ * The data stored is the name, the points earned, and the maximum possible
+ * points.
+ * 
+ * <p>Bugs: n/a
+ * 
+ * @author Connor Beckerle
  */
-
-
-public class Score {
+public class Score { 
 	
-	//Class variables
-	String name; //Assignment name
-	double points; //Points earned
-	double possible; //Points possible
+	/** The name of this Score. The first character is the category. */
+	private String name;
 	
+	/** The points earned. Should not exceed maxPossible */ 
+	private double points;
 	
-	/**Constructor
-	 * @param name
-	 * @param points
-	 * @param possible
-	 * @throws IllegalArgumentException
+	/** The maximum possible points to be earned */
+	private double maxPossible;
+	
+	/**
+	 * Constructor method for new Score. Assumes:
+	 * 1. Non-null name
+	 * 2. pointsEarned, maxPossible >= 0
+	 * 3. pointsEarned <= maxPossible
+	 * 
+	 * @param assignmentName
+	 * @param pointsEarned
+	 * @param maxPossible
 	 */
-	public Score(String name, double points, double possible) throws IllegalArgumentException{
-		if (name == null || points <0 || possible < points || possible < 0){
-			throw new java.lang.IllegalArgumentException();
+	public Score(String name, double pointsEarned, double maxPossible) {
+		super();
+		if (name == null) {
+			throw new IllegalArgumentException("Score name can't be null");
 		}
-		else{
-		
+		if (pointsEarned < 0) {
+			throw new IllegalArgumentException("Points earned can't be less than 0");
+		}
+		if (maxPossible < 0) {
+			throw new IllegalArgumentException("Max points can't be less than 0");
+		}
+		if (pointsEarned > maxPossible) {
+			throw new IllegalArgumentException("Points earned can't greater than max points");
+		}
 		this.name = name;
-		this.points = points;
-		this.possible = possible;
-		}
+		this.points = pointsEarned;
+		this.maxPossible = maxPossible;
+	}
+
+	/**
+	 * Gets the name of this instance.
+	 * 
+	 * PRECONDITIONS: None
+	 * POSTCONDITIONS: None
+	 * 
+	 * @return the name of this instance
+	 */
+	public String getName() {
+		return this.name;
+	}
+
+	/**
+	 * Gets the points of this instance.
+	 * 
+	 * PRECONDITIONS: None
+	 * POSTCONDITIONS: None
+	 * 
+	 * @return the points of this instance
+	 */
+	public double getPoints() {
+		return points;
+	}
+
+	/**
+	 * Gets the max points of this instance.
+	 * 
+	 * PRECONDITIONS: None
+	 * POSTCONDITIONS: None
+	 * 
+	 * @return the max points of this instance
+	 */
+	public double getMaxPossible() {
+		return maxPossible;
+	}
+
+	/**
+	 * Gets the first character of this instance's name.
+	 * 
+	 * PRECONDITIONS: None
+	 * POSTCONDITIONS: None
+	 * 
+	 * @return the first character of this instance's name
+	 */
+	public String getCategory() {
+		return name.substring(0,1);
 	}
 	
-	////////////// GETTERS ///////////////////
-	
-		/**Returns the name of the assignment
-		 * 
-		 * 
-		 * @return
-		 */
-		public String getName(){
-			return name;
-		}
-		/**Returns the points earned of the assignment
-		 * 
-		 * 
-		 * @return
-		 */
-		public double getPoints(){
-			return points;
-		}
-		
-		/**Returns the points possible for the assignment
-		 * 
-		 * 
-		 * @return
-		 */
-		public double getMaxPossible(){
-			return possible;
-		}
-	
-		
-	//////////// OTHER METHODS /////////////////	
-		
-		
-		
-		/**
-		 * Returns the first character of the name
-		 * @return
-		 */
-		public String getCategory()	{
-			return Character.toString(name.charAt(0)); 
-		}
-		
-		/**
-		 * Returns the percentage of points/possible times 100
-		 * @return
-		 */
-		public double getPercent(){
-			return (points/possible)*100;
-		}
-		
-		
+	/**
+	 * Gets the percent of maximum points earned on this instance.
+	 * 
+	 * PRECONDITIONS: None
+	 * POSTCONDITIONS: None
+	 * 
+	 * @return the percent of maximum points earned on this instance
+	 */
+	public double getPercent() {
+		return (100 * (points/maxPossible));
+	}
 }
