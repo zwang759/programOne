@@ -1,3 +1,10 @@
+/////////////////////////////////////////////////////////////////////////////
+// Semester:         CS367 Spring 2016 
+// PROJECT:          p0
+// FILE:             Test_ScoreList.java
+//
+// Author1: Matt Marcouiller, mcmarcouille@wisc.edu, 9071489638, Lec 003
+/////////////////////////////////////////////////////////////////////////////
 public class Test_ScoreList {
 
 	private static int passed = 0;  // keep count of each passed test

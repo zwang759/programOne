@@ -1,13 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
-// Semester:         CS367 Spring 2016 
-// PROJECT:          p1 (ScoreList & Score)
-// FILE:             p1
-//
-// Author: Savannah Mann
-//punch
-//////////////////////////// 80 columns wide //////////////////////////////////
 
-//Runs through all the Score Lists
 public class ScoreIterator {
 
 }
