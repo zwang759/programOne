@@ -1,3 +1,4 @@
+package p1;
 
 /** 
  * A container that stores references to instances of Score in a 

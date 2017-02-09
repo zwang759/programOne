@@ -1,3 +1,4 @@
+package p1;
 /**
  * Run several tests to see if the GradeEstimator program is working
  * as we expect.  

@@ -1,112 +1,99 @@
+package p1;
 /////////////////////////////////////////////////////////////////////////////
-// Semester:         CS367 Spring 2016 
-// PROJECT:          p1 (ScoreList & Score)
-// FILE:             p1
+// Semester:         CS367 Spring 2017
+// PROJECT:          p0
+// FILE:             ScoreList.java
 //
-// Author: Savannah Mann
-//punch
+// Authors: Connor Beckerle
+//
+// ---------------- OTHER ASSISTANCE CREDITS 
+// n/a
 //////////////////////////// 80 columns wide //////////////////////////////////
+
 /**
- * Stores the item Score in a List format, implements ScoreList ADT 
- *
- * @author Savannah Mann
+ * This class stores an orderd list of multiple instances of the score class.
+ * 
+ * <p>Bugs: n/a
+ * 
+ * @author Connor Beckerle
  */
-
-
 public class ScoreList implements ScoreListADT {
 	
+	/** Total number of Scores in this scorelist */
+	private int numScores = 0;
 	
-	Score[] storedScores = new Score[0]; //An array of all added Scores
-	Score[] tempStorage = new Score[0]; //Used for expanding the storedScores Array
-	Score tempRemove = new Score("temp",99999999,99999999); //For holding removed Scores
-	/** 
-	 * Returns the number of Scores in the list or zero
-	 * @return the number of scores in this list
+	/** Array used to hold Scores. Default size 10. */
+	private Score[] scores = new Score[10];
+	
+	public ScoreList() {
+	}
+
+	/* (non-Javadoc)
+	 * @see ScoreListADT#size()
 	 */
 	@Override
 	public int size() {
-		return storedScores.length;
+		return numScores;
 	}
 	
-	
-	/** 
-	 * Adds the score to the end of this list.
-	 * 
-	 * @param s a non-null Score to place as the last item in the list.
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see ScoreListADT#add(Score)
 	 */
 	@Override
 	public void add(Score s) throws IllegalArgumentException {
-	
 		if (s == null){
-			throw new java.lang.IllegalArgumentException();
+			throw new IllegalArgumentException("Cannot add null score to list");
 		}
-		else{
-		
-		/////ADD MORE SPACE TO THE ARRAY ONE BY ONE
-		tempStorage = storedScores; //transfer items to temp location
-		storedScores = new Score[tempStorage.length+1]; //expand the storage by one 
-		//Transfer all items from temp
-		for (int i = 0; i<tempStorage.length; i++){
-			storedScores[i] = tempStorage[i];
+		if (numScores == scores.length) {
+			expandArray();
 		}
-		
-		storedScores[storedScores.length-1] = s; //moves Score s to an empty spot in the array
-
-		}
+		scores[numScores] = s;
+		numScores++;
 	}
 
-	
-	/**
-	 * Removes and returns the item at index position i.
-	 * If i is less than zero or greater than size()-1,
-	 * will throw an IndexOutOfBoundsException.
-	 * @param i must be greater than or equal to zero and less than size()
-	 * @return the item at index i
-	 * @throws IndexOutOfBoundsException
+	/* (non-Javadoc)
+	 * @see ScoreListADT#remove(int)
 	 */
 	@Override
 	public Score remove(int i) throws IndexOutOfBoundsException {
-		
-		if (i < 0 || i> storedScores.length-1){
-			throw new java.lang.IndexOutOfBoundsException();
+		if (i < 0 || i >= numScores) {
+			throw new IndexOutOfBoundsException();
 		}
-		else{
-			
-			tempRemove = storedScores[i];
-			tempStorage = storedScores; //transfer items to temp location
-			storedScores = new Score[tempStorage.length-1]; //decrease the storage by one 
-			
-			//Transfer all items from temp, but leave out i
-			for (int j = 0; j<i-1; j++){
-				storedScores[j] = tempStorage[j];
-			}
-			
-			for (int k = i+1; k<tempStorage.length; k++){
-				storedScores[k-1] = tempStorage[k];
-			}
-		
-			return tempRemove;
+		Score retScore = scores[i];
+		for (int k = i; k < (numScores - 1); k++) {
+			scores[k] = scores[k+1]; // move scores down to fill in gap from removal
 		}
+		numScores--;
+		return retScore;
 	}
 
-	
-	/**
-	 * Returns (without removing) the item at index position i.
-	 * If i is less than zero or greater than size()-1,
-	 * will throw an IndexOutOfBoundsException.
-	 * @param i must be greater than or equal to zero and less than size()
-	 * @return the item at index i
-	 * @throws IndexOutOfBoundsException
-	 **/
+	/* (non-Javadoc)
+	 * @see ScoreListADT#get(int)
+	 */
 	@Override
 	public Score get(int i) throws IndexOutOfBoundsException {
-		if (i < 0 || i> storedScores.length-1){
-			throw new java.lang.IndexOutOfBoundsException();
+		if (i < 0 || i >= numScores) {
+			throw new IndexOutOfBoundsException();
 		}
-		else{
-		return storedScores[i];
-		}
+		return scores[i];
 	}
 
+	/**
+	 * This doubles the size of the array used to store score data.
+	 * 
+	 * PRECONDITIONS: This should only be called by add() when it runs out of space.
+	 * POSTCONDITIONS: Doubles the size of the scores array.
+	 * 
+	 */
+	private void expandArray() {
+		
+		/** Temporarily holds scores in new, expanded array before
+		 * transferring them back to the original array. */
+		Score[] tempArr = new Score[this.scores.length * 2];
+		
+		for (int i = 0; i < this.scores.length; i++) {
+			tempArr[i] = this.scores[i]; // transfer scores to temp array
+		}
+		this.scores = tempArr;
+	}
 }
