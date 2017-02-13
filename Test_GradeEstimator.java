@@ -32,6 +32,9 @@ public class Test_GradeEstimator {
 
 		// Run your program with a the sample grade_info_bad.txt 
 		test("test03 Bad File Format", "grade_info_bad.txt", "GradeFileFormatException");
+		
+		// Run your program with a the sample grade_info_bad.txt 
+		test("test03 Bad File Format", "grade_info_bad_min.txt", "threshold err");
 
 		/////////////////////////////////////////////////////////////////////
 		// Add your own additional test runs.

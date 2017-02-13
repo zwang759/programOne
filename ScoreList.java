@@ -1,27 +1,36 @@
 /////////////////////////////////////////////////////////////////////////////
 // Semester:         CS367 Spring 2017
-// PROJECT:          p0
-// FILE:             ScoreList.java
+// PROJECT:          p1
+// FILE:             GradeEstimator.java
 //
-// Authors: Connor Beckerle
+// TEAM:    Team 82 (Baked Goods Dinosaurs)
+// Authors
+// Author1: Connor Beckerle, cbeckerle@wisc.edu, 9077878594, 003
+// Author2: Zhiheng Wang, zwang759@wisc.edu, 9074796922, 003
+// Author3: Chase Wember, cwember@wisc.edu, 9066586711, 003
+// Author4: Matt Marcouiller, mcmarcouille@wisc.edu, 9071489638, 003
+// Author5: Savannah Mann, smann5@wisc.edu, ?, 003
+// Author6: Evangeline Li, zli483@wisc.edu, ?, 003
 //
 // ---------------- OTHER ASSISTANCE CREDITS 
-// n/a
+// Persons: N/A
+// 
+// Online sources: N/A
 //////////////////////////// 80 columns wide //////////////////////////////////
 
 /**
- * This class stores an orderd list of multiple instances of the score class.
+ * This class stores an ordered list of multiple instances of the score class.
  * 
  * <p>Bugs: n/a
  * 
- * @author Connor Beckerle
+ * @author Connor Beckerle, Zhiheng Wang, Chase Wember, Matt Marcouiller, Savannah Mann, Evangeline Li
  */
 public class ScoreList implements ScoreListADT {
 	
-	/** Total number of Scores in this scorelist */
+	// Total number of Scores in this scorelist
 	private int numScores = 0;
 	
-	/** Array used to hold Scores. Default size 10. */
+	// Array used to hold Scores. Default size 10.
 	private Score[] scores = new Score[10];
 	
 	public ScoreList() {
