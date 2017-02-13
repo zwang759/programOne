@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Semester:         CS367 Spring 2017
 // PROJECT:          p1
-// FILE:             ScoreIterator.java
+// FILE:             ScoreIteratorADT.java
 //
 // TEAM:    Team 82 (Baked Goods Dinosaurs)
 // Authors
