@@ -5,12 +5,12 @@
 //
 // TEAM:    Team 82 (Baked Goods Dinosaurs)
 // Authors
-// Author1: Connor Beckerle, cbeckerle@wisc.edu, 9077878594, 003
-// Author2: Zhiheng Wang, zwang759@wisc.edu, 9074796922, 003
-// Author3: Chase Wember, cwember@wisc.edu, 9066586711, 003
-// Author4: Matt Marcouiller, mcmarcouille@wisc.edu, 9071489638, 003
-// Author5: Savannah Mann, smann5@wisc.edu, ?, 003
-// Author6: Evangeline Li, zli483@wisc.edu, ?, 003
+// Author1: Connor Beckerle, cbeckerle@wisc.edu, cbeckerle, 003
+// Author2: Zhiheng Wang, zwang759@wisc.edu, zwang759, 003
+// Author3: Chase Wember, cwember@wisc.edu, cwember, 003
+// Author4: Matt Marcouiller, mcmarcouille@wisc.edu, mcmarcouille, 003
+// Author5: Savannah Mann, smann5@wisc.edu, smann5, 003
+// Author6: Evangeline Li, zli483@wisc.edu, zli483, 003
 //
 // ---------------- OTHER ASSISTANCE CREDITS 
 // Persons: N/A
